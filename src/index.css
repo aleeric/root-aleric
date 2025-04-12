@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+:root {
+  --kali-terminal-bg: #1F1F1F;
+  --kali-terminal-header: #2A2A2A;
+  --kali-terminal-border: #3A3A3A;
+  --kali-blue: #729FCF;
+  --kali-text: #D3D7CF;
+  --kali-green: #73D216;
+  --kali-red: #CC0000;
+  --topbar-height: 30px;
+  --rightmenu-width: 200px;
+  --mobile-menu-height: 50px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--kali-terminal-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--kali-blue);
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 0;
+    display: none;
+  }
+} 
