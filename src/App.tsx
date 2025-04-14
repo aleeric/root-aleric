@@ -5,6 +5,7 @@ import TopBar from "./components/TopBar";
 import RightMenu from "./components/RightMenu";
 import LoadingScreen from "./components/LoadingScreen";
 import { LoggingProvider } from './context/LoggingContext';
+import './styles/kali-theme.css';
 
 // Lazy load components for better performance
 const HomePage = lazy(() => import("./components/HomePage"));
@@ -15,19 +16,6 @@ const LogsDashboard = lazy(() => import("./components/LogsDashboard"));
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-
-  :root {
-    --kali-terminal-bg: #1F1F1F;
-    --kali-terminal-header: #2A2A2A;
-    --kali-terminal-border: #3A3A3A;
-    --kali-blue: #729FCF;
-    --kali-text: #D3D7CF;
-    --kali-green: #73D216;
-    --kali-red: #CC0000;
-    --topbar-height: 30px;
-    --rightmenu-width: 200px;
-    --mobile-menu-height: 50px;
-  }
 
   * {
     margin: 0;
@@ -44,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Share Tech Mono', monospace;
-    background: var(--kali-terminal-bg);
+    background: var(--kali-bg);
     color: var(--kali-text);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -121,7 +109,7 @@ const AppContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--kali-terminal-bg);
+  background: var(--kali-bg);
 `;
 
 const ContentContainer = styled.div`
@@ -131,7 +119,7 @@ const ContentContainer = styled.div`
   min-height: calc(100vh - var(--topbar-height));
   position: relative;
   transition: padding 0.3s ease;
-  background: var(--kali-terminal-bg);
+  background: var(--kali-bg);
 
   @media (max-width: 768px) {
     padding-right: 0;

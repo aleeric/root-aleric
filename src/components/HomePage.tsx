@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import Terminal from './Terminal'
 import { useNavigate } from 'react-router-dom'
 import MobileCommandInput from './MobileCommandInput'
+import AnimatedHeader from './AnimatedHeader'
 
 const fadeIn = keyframes`
   from {
@@ -49,6 +50,9 @@ const TerminalContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 
   @media (max-width: 768px) {
     height: 100%;
@@ -88,8 +92,7 @@ const HomePage = () => {
   const [commandHistory, setCommandHistory] = useState<CommandHistoryItem[]>([])
 
   const welcomeMessage = [
-    '┌──(root㉿aleric)-[~]',
-    '└─$ whoami',
+    '~ $ whoami',
     'Riccardo Alesci',
     ' ',
     '',
@@ -114,7 +117,6 @@ const HomePage = () => {
       'their infrastructure—cloud and on-prem—through automation,', 
       'proactive monitoring, and collaborative security practices.',
       { text: '--> See Career <--', path: '/career' }
-
     ],
     contact: [
       'Contact Information:',
@@ -125,7 +127,6 @@ const HomePage = () => {
     ],
     articles: ['Recent Articles:', '']
   }
-
 
   const recentArticles: ClickableItem[] = [
     { text: '--> 1. Splunk RCE Vulnerability <---', path: '/articles/splunk-rce' }
@@ -179,16 +180,21 @@ const HomePage = () => {
 
   return (
     <HomeContainer>
+      <div className="desktop-only">
+        <AnimatedHeader />
+      </div>
       <TerminalContainer>
         <Terminal
           title="root@aleric"
           path="~"
           commands={[...initialCommands, ...commandHistory]}
-          renderOutput={renderOutput}
           onCommand={handleCommand}
+          renderOutput={renderOutput}
         />
       </TerminalContainer>
-      <MobileCommandInput onExecuteCommand={handleCommand} />
+      <div className="mobile-only">
+        <MobileCommandInput onExecuteCommand={handleCommand} />
+      </div>
     </HomeContainer>
   )
 }

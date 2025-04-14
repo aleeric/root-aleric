@@ -1,0 +1,231 @@
+:root {
+  /* Kali Linux Theme Colors */
+  --kali-bg: #0a0a0a;
+  --kali-header: #111111;
+  --kali-border: #1e1e1e;
+  --kali-blue: #00a9ff;
+  --kali-text: #d3d3d3;
+  --kali-green: #00ff00;
+  --kali-red: #ff0000;
+  --kali-hover: #29b6f6;
+  --kali-active: #0288d1;
+  --kali-dark: #000000;
+  --kali-yellow: #E0AF68;
+  --kali-cyan: #2AC3DE;
+  
+  /* Gradients */
+  --gradient-glow: radial-gradient(circle at 50% 50%, rgba(0, 169, 255, 0.05) 0%, rgba(0, 169, 255, 0) 70%);
+  --gradient-blue: linear-gradient(135deg, var(--kali-blue) 0%, #0051ff 100%);
+  
+  /* Layout */
+  --topbar-height: 30px;
+  --rightmenu-width: 200px;
+  --mobile-menu-height: 56px;
+  
+  /* Effects */
+  --shadow-sm: 0 2px 4px rgba(0, 169, 255, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 169, 255, 0.15);
+  --shadow-lg: 0 8px 16px rgba(0, 169, 255, 0.2);
+  --glow-blue: 0 0 20px rgba(0, 169, 255, 0.2);
+  --glow-strong: 0 0 30px rgba(0, 169, 255, 0.3);
+}
+
+/* Global Styles */
+body {
+  background-color: var(--kali-bg);
+  background-image: var(--gradient-glow);
+  background-attachment: fixed;
+  color: var(--kali-text);
+  font-family: 'Share Tech Mono', monospace;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Terminal-like Elements */
+.terminal-style {
+  background-color: var(--kali-dark);
+  border: 1px solid var(--kali-border);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.terminal-style:hover {
+  border-color: var(--kali-blue);
+  box-shadow: var(--glow-blue);
+}
+
+/* Links and Interactive Elements */
+a, button, [role="button"] {
+  color: var(--kali-blue);
+  transition: all 0.2s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+a:hover, button:hover, [role="button"]:hover {
+  color: var(--kali-hover);
+  text-shadow: 0 0 8px rgba(0, 169, 255, 0.5);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background: var(--gradient-blue);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Code Blocks */
+pre, code {
+  background: var(--kali-dark);
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-family: 'Share Tech Mono', monospace;
+  border: 1px solid var(--kali-border);
+}
+
+/* Mobile Menu Bar */
+.mobile-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--mobile-menu-height);
+  background: rgba(0, 0, 0, 0.95);
+  border-top: 1px solid var(--kali-blue);
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  z-index: 1000;
+  box-shadow: var(--glow-blue);
+}
+
+.mobile-menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--kali-text);
+  text-decoration: none;
+  padding: 4px 0;
+  flex: 1;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-item.active {
+  color: var(--kali-blue);
+  box-shadow: inset 0 -2px 0 var(--kali-blue);
+  background: linear-gradient(to bottom, rgba(0, 169, 255, 0.1), transparent);
+}
+
+.mobile-menu-item:hover {
+  background: rgba(0, 169, 255, 0.1);
+  color: var(--kali-hover);
+}
+
+.mobile-menu-icon {
+  font-size: 1.4rem;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+  transition: transform 0.2s ease;
+}
+
+.mobile-menu-item:hover .mobile-menu-icon {
+  transform: translateY(-2px);
+  text-shadow: 0 0 8px var(--kali-blue);
+}
+
+.mobile-menu-label {
+  font-size: 0.7rem;
+  text-align: center;
+  display: block;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--kali-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--kali-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--kali-blue);
+  box-shadow: var(--glow-blue);
+}
+
+/* Selection */
+::selection {
+  background: var(--kali-blue);
+  color: var(--kali-dark);
+}
+
+/* Animations */
+@keyframes glow {
+  0% { box-shadow: var(--shadow-md); }
+  50% { box-shadow: var(--shadow-md), var(--glow-blue); }
+  100% { box-shadow: var(--shadow-md); }
+}
+
+/* Cards and Containers */
+.card {
+  background: var(--kali-dark);
+  border-radius: 8px;
+  border: 1px solid var(--kali-border);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--kali-blue);
+  box-shadow: var(--glow-blue);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  
+  body {
+    padding-bottom: var(--mobile-menu-height);
+  }
+  
+  #root {
+    padding-bottom: var(--mobile-menu-height);
+  }
+  
+  .card {
+    margin: 0.75rem 0;
+    padding: 1rem;
+  }
+} 

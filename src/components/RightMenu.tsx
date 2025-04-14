@@ -5,13 +5,14 @@ import { useNavigate, useLocation } from 'react-router-dom'
 const MenuContainer = styled.div`
   position: fixed;
   right: 0;
-  top: 30px;
-  width: 200px;
-  height: calc(100vh - 30px);
-  background: #1F1F1F;
-  border-left: 1px solid #729FCF;
+  top: var(--topbar-height);
+  width: var(--rightmenu-width);
+  height: calc(100vh - var(--topbar-height));
+  background: var(--kali-dark);
+  border-left: 1px solid var(--kali-border);
   padding: 1rem;
   z-index: 100;
+  box-shadow: var(--shadow-md);
 
   @media (max-width: 768px) {
     top: auto;
@@ -20,25 +21,19 @@ const MenuContainer = styled.div`
     width: 100%;
     height: var(--mobile-menu-height);
     border-left: none;
-    border-top: 1px solid var(--kali-border);
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    border-top: 1px solid var(--kali-blue);
+    overflow: hidden;
     padding: 0;
     display: flex;
     justify-content: space-around;
-    align-items: center;
-    
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    align-items: stretch;
+    background: rgba(0, 0, 0, 0.95);
+    box-shadow: var(--glow-blue);
   }
 `
 
 const MenuItem = styled.div<{ isActive: boolean; isSubmenu?: boolean; hidden?: boolean }>`
-  color: ${props => props.isActive ? '#729FCF' : '#FFFFFF'};
+  color: ${props => props.isActive ? 'var(--kali-blue)' : 'var(--kali-text)'};
   padding: 0.5rem;
   margin: 0.25rem 0;
   cursor: pointer;
@@ -50,9 +45,12 @@ const MenuItem = styled.div<{ isActive: boolean; isSubmenu?: boolean; hidden?: b
   padding-left: ${props => props.isSubmenu ? '2rem' : '0'};
   opacity: ${props => props.hidden ? '0' : '1'};
   pointer-events: ${props => props.hidden ? 'none' : 'auto'};
+  border-radius: 4px;
 
   &:hover {
-    color: #729FCF;
+    color: var(--kali-hover);
+    background: rgba(0, 169, 255, 0.1);
+    box-shadow: var(--glow-blue);
   }
 
   &::before {
@@ -60,19 +58,33 @@ const MenuItem = styled.div<{ isActive: boolean; isSubmenu?: boolean; hidden?: b
     position: absolute;
     right: 0.5rem;
     opacity: ${props => props.isActive ? '1' : '0'};
+    color: var(--kali-blue);
+    text-shadow: 0 0 8px var(--kali-blue);
   }
 
   @media (max-width: 768px) {
-    padding: 0.5rem 1rem;
+    padding: 4px 0;
     height: 100%;
     justify-content: center;
-    font-size: 0.9em;
     margin: 0;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0;
     
     &::before {
       display: none;
     }
+
+    &:hover {
+      background: rgba(0, 169, 255, 0.1);
+    }
+
+    ${props => props.isActive && `
+      background: linear-gradient(to bottom, rgba(0, 169, 255, 0.1), transparent);
+      box-shadow: inset 0 -2px 0 var(--kali-blue);
+    `}
   }
 `
 
@@ -83,35 +95,63 @@ const MenuItemContent = styled.div`
   width: 100%;
   
   @media (max-width: 768px) {
+    height: 100%;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 2px;
+    width: auto;
+    padding: 4px 0;
   }
 `
 
 const MenuIcon = styled.span`
   margin-right: 0.5rem;
   font-size: 1.2rem;
+  color: var(--kali-blue);
+  transition: all 0.3s ease;
+  text-shadow: 0 0 8px rgba(0, 169, 255, 0.2);
   
   @media (max-width: 768px) {
-    margin-right: 0;
-    margin-bottom: 0.25rem;
+    margin: 0;
+    font-size: 1.4rem;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    ${MenuItem}:hover & {
+      transform: translateY(-2px);
+      text-shadow: 0 0 8px var(--kali-blue);
+    }
   }
 `
 
 const MenuLabel = styled.span`
-  text-align: right;
+  transition: all 0.3s ease;
   
   @media (max-width: 768px) {
+    font-size: 0.7rem;
     text-align: center;
-    font-size: 0.8rem;
+    display: block;
+    line-height: 1;
+    opacity: 0.8;
+    
+    ${MenuItem}:hover & {
+      opacity: 1;
+      text-shadow: 0 0 8px var(--kali-blue);
+    }
   }
 `
 
 const SubMenu = styled.div<{ isOpen: boolean }>`
   max-height: ${props => props.isOpen ? '500px' : '0'};
   overflow: hidden;
-  transition: max-height 0.3s ease;
-  background: rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  background: var(--kali-dark);
+  border-radius: 4px;
+  margin-left: 1rem;
+  border: 1px solid var(--kali-border);
 
   @media (max-width: 768px) {
     position: fixed;
@@ -119,11 +159,13 @@ const SubMenu = styled.div<{ isOpen: boolean }>`
     left: 0;
     width: 100%;
     max-height: ${props => props.isOpen ? '40vh' : '0'};
-    background: var(--kali-terminal-bg);
-    border-top: 1px solid var(--kali-border);
+    background: rgba(0, 0, 0, 0.95);
+    border-top: 1px solid var(--kali-blue);
     z-index: 99;
     display: flex;
     flex-direction: column;
+    border-radius: 12px 12px 0 0;
+    box-shadow: var(--glow-blue);
   }
 `
 
@@ -183,8 +225,7 @@ interface MenuItemType {
 const menuItems: MenuItemType[] = [
   { path: '/', label: 'Home', icon: '🏠' },
   { path: '/career', label: 'Career', icon: '💼' },
-  { path: '/articles', label: 'Articles', icon: '📚' },
-  { path: '/logs', label: 'Logs', icon: '📊', hidden: true }
+  { path: '/articles', label: 'Articles', icon: '📚' }
 ];
 
 const RightMenu: React.FC = () => {
@@ -298,10 +339,17 @@ const RightMenu: React.FC = () => {
             onClick={() => handleMenuClick(item)}
             hidden={item.hidden && !showLogs}
           >
-            <MenuItemContent>
-              <MenuIcon>{item.icon}</MenuIcon>
-              <MenuLabel>{item.label}</MenuLabel>
-            </MenuItemContent>
+            {isMobile ? (
+              <>
+                <MenuIcon>{item.icon}</MenuIcon>
+                <MenuLabel>{item.label}</MenuLabel>
+              </>
+            ) : (
+              <MenuItemContent>
+                <MenuIcon>{item.icon}</MenuIcon>
+                <MenuLabel>{item.label}</MenuLabel>
+              </MenuItemContent>
+            )}
           </MenuItem>
           {item.submenu && (
             <SubMenu isOpen={openSubmenu === item.path}>
