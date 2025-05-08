@@ -6,6 +6,7 @@ import RightMenu from "./components/RightMenu";
 import LoadingScreen from "./components/LoadingScreen";
 import { LoggingProvider } from './context/LoggingContext';
 import './styles/kali-theme.css';
+import AntiScriptKid from "./components/AntiScriptKid";
 
 // Lazy load components for better performance
 const HomePage = lazy(() => import("./components/HomePage"));
@@ -129,8 +130,11 @@ const ContentContainer = styled.div`
   }
 `;
 
+const UNLOCK_HASH = "1337_c0d3";
+
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const isUnlocked = (import.meta as any).env.VITE_KALI_ROOT_HASH === UNLOCK_HASH;
 
   useEffect(() => {
     // Simulate loading time
@@ -140,6 +144,7 @@ const App: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
 
   return (
     <Router>

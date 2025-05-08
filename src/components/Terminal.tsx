@@ -1,5 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+const glitch = keyframes`
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+`;
+
+const scanline = keyframes`
+  0% { top: 0; }
+  100% { top: 100%; }
+`;
 
 const TerminalContainer = styled.div`
   background: var(--kali-terminal-bg);
@@ -9,12 +23,30 @@ const TerminalContainer = styled.div`
   flex-direction: column;
   height: 100%;
   overflow: hidden;
+  position: relative;
 
   @media (max-width: 768px) {
     border: none;
     border-radius: 0;
   }
-`
+`;
+
+const GlitchScanline = styled.div`
+  display: none;
+  @media (min-width: 769px) {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, #00ff9d88 50%, transparent);
+    opacity: 0.5;
+    animation: ${scanline} 2.5s linear infinite;
+    z-index: 3;
+    pointer-events: none;
+  }
+`;
 
 const TerminalHeader = styled.div`
   background: var(--kali-terminal-header);
@@ -22,11 +54,15 @@ const TerminalHeader = styled.div`
   border-bottom: 1px solid var(--kali-terminal-border);
   display: flex;
   align-items: center;
+  position: relative;
+  z-index: 2;
+  animation: ${glitch} 2.5s infinite alternate;
 
   @media (max-width: 768px) {
     padding: 6px;
+    animation: none;
   }
-`
+`;
 
 const TerminalBody = styled.div`
   flex: 1;
@@ -52,13 +88,13 @@ const TerminalBody = styled.div`
     background: var(--kali-terminal-border);
     border-radius: 4px;
   }
-`
+`;
 
 const TerminalContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-`
+`;
 
 const CommandLine = styled.div`
   display: flex;
@@ -69,16 +105,17 @@ const CommandLine = styled.div`
   @media (max-width: 768px) {
     font-size: 14px;
   }
-`
+`;
 
 const Prompt = styled.span`
   color: var(--kali-blue);
   white-space: nowrap;
-`
+  animation: ${glitch} 2.2s infinite alternate;
+`;
 
 const Command = styled.span`
   color: var(--kali-text);
-`
+`;
 
 const OutputContainer = styled.div`
   margin-left: 1rem;
@@ -90,12 +127,13 @@ const OutputContainer = styled.div`
     margin-left: 0.5rem;
     font-size: 14px;
   }
-`
+`;
 
 const Title = styled.div`
   color: var(--kali-text);
   font-size: 14px;
   font-family: 'Share Tech Mono', monospace;
+  text-shadow: 0 0 8px #00ff9d, 0 0 16px #0ff;
 `;
 
 const CommandInput = styled.input`
@@ -107,7 +145,14 @@ const CommandInput = styled.input`
   outline: none;
   width: 100%;
   padding: 0;
-
+  transition: box-shadow 0.2s;
+  box-shadow: none;
+  @media (min-width: 769px) {
+    &:focus {
+      box-shadow: 0 0 8px #00ff9d, 0 0 16px #0ff;
+      border-radius: 2px;
+    }
+  }
   @media (max-width: 768px) {
     font-size: 13px;
   }
@@ -176,6 +221,7 @@ const Terminal: React.FC<TerminalProps> = ({ title, path, commands, onCommand, r
 
   return (
     <TerminalContainer>
+      <GlitchScanline />
       <TerminalHeader>
         <Title>{title}</Title>
       </TerminalHeader>

@@ -228,4 +228,36 @@ pre, code {
     margin: 0.75rem 0;
     padding: 1rem;
   }
+}
+
+/* Neon/Glitch button and link styles */
+button, .btn, a.main-link {
+  background: #111;
+  color: var(--kali-blue);
+  border: 2px solid var(--kali-blue);
+  border-radius: 6px;
+  padding: 0.6em 1.4em;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+  box-shadow: 0 0 8px #00ff9d44, 0 0 0px #0ff;
+  transition: box-shadow 0.2s, color 0.2s, border-color 0.2s, background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+button:hover, .btn:hover, a.main-link:hover {
+  color: #111;
+  background: var(--kali-blue);
+  border-color: #fff;
+  box-shadow: 0 0 24px #00ff9d, 0 0 8px #0ff;
+  text-shadow: 0 0 8px #fff, 0 0 16px #00ff9d;
+  animation: neon-glitch 0.3s linear 1;
+}
+
+@keyframes neon-glitch {
+  0% { box-shadow: 0 0 8px #00ff9d44, 0 0 0px #0ff; }
+  20% { box-shadow: 0 0 24px #00ff9d, 0 0 8px #0ff; }
+  40% { box-shadow: 0 0 12px #0ff, 0 0 24px #00ff9d; }
+  60% { box-shadow: 0 0 32px #00ff9d, 0 0 16px #0ff; }
+  100% { box-shadow: 0 0 24px #00ff9d, 0 0 8px #0ff; }
 } 

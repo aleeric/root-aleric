@@ -497,6 +497,20 @@ const HomePage = () => {
     <HomeContainer>
       <div className="desktop-only">
         <AnimatedHeader />
+        <MenuSection>
+          <DesktopParallaxLines>
+            <div></div><div></div><div></div><div></div>
+          </DesktopParallaxLines>
+          <DesktopCRTOverlay />
+          <DesktopMenuCard onClick={() => navigate('/career')}>
+            <h2><AnimatedIcon role="img" aria-label="Career">💼</AnimatedIcon>Career</h2>
+            <p>Explore my professional journey, skills, and experience in cloud security and cybersecurity.</p>
+          </DesktopMenuCard>
+          <DesktopMenuCard onClick={() => navigate('/articles')}>
+            <h2><AnimatedIcon role="img" aria-label="Articles">📚</AnimatedIcon>Articles</h2>
+            <p>Read my latest articles about cybersecurity, cloud security, and technical insights.</p>
+          </DesktopMenuCard>
+        </MenuSection>
       </div>
       <TerminalContainer>
         <Terminal
@@ -507,20 +521,6 @@ const HomePage = () => {
           renderOutput={renderOutput}
         />
       </TerminalContainer>
-      <MenuSection>
-        <DesktopParallaxLines>
-          <div></div><div></div><div></div><div></div>
-        </DesktopParallaxLines>
-        <DesktopCRTOverlay />
-        <DesktopMenuCard onClick={() => navigate('/career')}>
-          <h2><AnimatedIcon role="img" aria-label="Career">💼</AnimatedIcon>Career</h2>
-          <p>Explore my professional journey, skills, and experience in cloud security and cybersecurity.</p>
-        </DesktopMenuCard>
-        <DesktopMenuCard onClick={() => navigate('/articles')}>
-          <h2><AnimatedIcon role="img" aria-label="Articles">📚</AnimatedIcon>Articles</h2>
-          <p>Read my latest articles about cybersecurity, cloud security, and technical insights.</p>
-        </DesktopMenuCard>
-      </MenuSection>
       <MobileHeader>
         <MobileTitle>
           <Typewriter>root@aleric</Typewriter>
