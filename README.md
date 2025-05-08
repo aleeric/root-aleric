@@ -1,9 +1,8 @@
 # root@aleric
 
-A modern, interactive cybersecurity portfolio website built with React and TypeScript, featuring a Kali Linux-inspired terminal interface and responsive design.
+> Website: [aleric.cc](https://aleric.cc)
 
 ![](imgs/home.gif)
-
 
 
 ## 📦 Installation
