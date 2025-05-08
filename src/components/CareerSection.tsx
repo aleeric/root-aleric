@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { motion } from 'framer-motion'
+import AnimatedHeader from './AnimatedHeader'
 
 const Container = styled.div`
   padding: 2rem;
@@ -48,11 +49,26 @@ const fadeIn = keyframes`
   }
 `
 
+const scanline = keyframes`
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+`;
+
+const typewriter = keyframes`
+  from { width: 0 }
+  to { width: 100% }
+`;
+
 const pulse = keyframes`
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
-`
+`;
+
+const blink = keyframes`
+  0%, 100% { border-color: var(--kali-blue); }
+  50% { border-color: transparent; }
+`;
 
 const glow = keyframes`
   0% { box-shadow: 0 0 5px var(--kali-blue); }
@@ -461,6 +477,103 @@ const Item = styled.li`
   }
 `
 
+const ParallaxLines = styled.div`
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  @media (min-width: 769px) { display: none; }
+  & > div {
+    position: absolute;
+    width: 100vw;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--kali-blue), transparent);
+    opacity: 0.08;
+    animation: parallaxMove 10s linear infinite;
+  }
+  & > div:nth-child(1) { top: 20%; animation-delay: 0s; }
+  & > div:nth-child(2) { top: 40%; animation-delay: 2s; }
+  & > div:nth-child(3) { top: 60%; animation-delay: 4s; }
+  & > div:nth-child(4) { top: 80%; animation-delay: 6s; }
+  @keyframes parallaxMove {
+    0% { transform: translateX(-10vw); }
+    100% { transform: translateX(10vw); }
+  }
+`;
+
+const CRTOverlay = styled.div`
+  pointer-events: none;
+  position: fixed;
+  z-index: 10;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(114,159,207,0.04) 0px,
+    rgba(114,159,207,0.04) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  mix-blend-mode: lighten;
+  @media (min-width: 769px) { display: none; }
+`;
+
+const DesktopParallaxLines = styled(ParallaxLines)`
+  @media (max-width: 768px) { display: none; }
+  z-index: 1;
+`;
+
+const DesktopCRTOverlay = styled(CRTOverlay)`
+  @media (max-width: 768px) { display: none; }
+  z-index: 2;
+`;
+
+const MobileHeader = styled.div`
+  display: none;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem 1rem 1rem;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.95) 100%);
+    border-bottom: 1px solid var(--kali-blue);
+    box-shadow: 0 0 20px rgba(0, 0, 255, 0.1);
+    animation: ${fadeIn} 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 255, 0.1) 50%, transparent 100%);
+      animation: ${scanline} 4s linear infinite;
+      pointer-events: none;
+    }
+  }
+`;
+
+const MobileTitle = styled.h1`
+  color: var(--kali-blue);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: ${fadeIn} 0.5s ease-out, ${pulse} 3s infinite;
+  text-shadow: 0 0 10px var(--kali-blue);
+`;
+
+const Typewriter = styled.span`
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--kali-blue);
+  width: 0;
+  animation: ${typewriter} 2s steps(20, end) 0.2s forwards, ${blink} 1s step-end infinite 2.2s;
+`;
+
 interface TimelineItem {
   id: string;
   date: string;
@@ -666,6 +779,25 @@ const CareerSection: React.FC = () => {
   
   return (
     <Container>
+      <div className="desktop-only">
+        <AnimatedHeader />
+      </div>
+      <DesktopParallaxLines>
+        <div></div><div></div><div></div><div></div>
+      </DesktopParallaxLines>
+      <DesktopCRTOverlay />
+      <ParallaxLines>
+        <div></div><div></div><div></div><div></div>
+      </ParallaxLines>
+      <CRTOverlay />
+      <MobileHeader>
+        <MobileTitle>
+          <Typewriter>Career@aleric</Typewriter>
+        </MobileTitle>
+        <Subtitle>
+          Cybersecurity Career & Journey
+        </Subtitle>
+      </MobileHeader>
       <Header>
         <Title>Cybersecurity Career</Title>
         <Subtitle>Explore my professional journey in cybersecurity</Subtitle>

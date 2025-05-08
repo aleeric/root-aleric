@@ -25,8 +25,8 @@ A modern, interactive cybersecurity portfolio website built with React and TypeS
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/website_aleric.git
-cd website_aleric
+git clone https://github.com/aleeric/root-aleric.git
+cd root-aleric
 ```
 
 2. Install dependencies:
