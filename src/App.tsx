@@ -134,7 +134,7 @@ const UNLOCK_HASH = "1337_c0d3";
 
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const isUnlocked = (import.meta as any).env.VITE_KALI_ROOT_HASH === UNLOCK_HASH;
+  const isUnlocked = (import.meta as any).env.UNLOCK === UNLOCK_HASH;
 
   useEffect(() => {
     // Simulate loading time
@@ -145,6 +145,9 @@ const App: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  if (!isUnlocked) {
+    return <AntiScriptKid />;
+  }
 
   return (
     <Router>
