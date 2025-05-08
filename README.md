@@ -2,7 +2,7 @@
 
 A modern, interactive cybersecurity portfolio website built with React and TypeScript, featuring a Kali Linux-inspired terminal interface and responsive design.
 
-![](imgs/home.png)
+![](imgs/home.gif)
 
 
 
