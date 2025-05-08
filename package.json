@@ -43,7 +43,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "homepage": "https://aleeric.github.io/terminal-portfolio",
+  "homepage": "https://aleeric.github.io/root-aleric",
   "eslintConfig": {
     "extends": [
       "react-app",

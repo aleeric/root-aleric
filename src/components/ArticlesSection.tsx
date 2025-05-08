@@ -156,15 +156,6 @@ const ArticleMeta = styled.div`
   border-top: 1px solid var(--kali-terminal-border);
 `;
 
-const ViewCount = styled.span`
-  background: rgba(0, 255, 0, 0.1);
-  color: #00ff00;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  margin-left: 0.5rem;
-`;
-
 const articles = [
   {
     id: 'Splunk RCE',
@@ -213,10 +204,7 @@ const ArticlesSection: React.FC = () => {
             onClick={() => handleArticleClick(article.id, article.title)}
           >
             <ArticleCard index={index}>
-              <ArticleTitle>
-                {article.title}
-                <ViewCount>{getArticleViews(article.id)} views</ViewCount>
-              </ArticleTitle>
+              <ArticleTitle>{article.title}</ArticleTitle>
               <ArticleDescription index={index}>{article.description}</ArticleDescription>
               <ArticleMeta>
                 <span>{article.date}</span>

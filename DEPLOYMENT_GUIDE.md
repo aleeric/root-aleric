@@ -28,14 +28,14 @@ Before you begin, ensure you have:
 2. **Create a new repository**:
    - Click the "+" icon in the top-right corner
    - Select "New repository"
-   - Enter a repository name (e.g., "terminal-portfolio")
+   - Enter a repository name (e.g., "root-aleric")
    - Add a description (optional)
    - Select "Private" for repository visibility
    - Check "Add a README file" if you want to start with a README
    - Click "Create repository"
 
 3. **Note your repository URL**:
-   - It will look like: `https://github.com/yourusername/terminal-portfolio.git`
+   - It will look like: `https://github.com/aleeric/root-aleric.git`
 
 ## Preparing Your Project
 
@@ -72,7 +72,7 @@ Before you begin, ensure you have:
 4. **Update package.json**:
    - Add the homepage field with your GitHub Pages URL:
      ```json
-     "homepage": "https://yourusername.github.io/terminal-portfolio",
+     "homepage": "https://aleeric.github.io/root-aleric",
      ```
    - Add a deploy script:
      ```json
@@ -108,7 +108,7 @@ Before you begin, ensure you have:
 
 4. **Add the remote repository**:
    ```bash
-   git remote add origin https://github.com/yourusername/terminal-portfolio.git
+   git remote add origin https://github.com/aleeric/root-aleric.git
    ```
 
 5. **Push to GitHub**:
@@ -142,7 +142,7 @@ Before you begin, ensure you have:
    - Click "Save"
 
 4. **Verify deployment**:
-   - Your site will be available at `https://yourusername.github.io/terminal-portfolio`
+   - Your site will be available at `https://aleeric.github.io/root-aleric`
    - It may take a few minutes for the changes to propagate
 
 ## Custom Domain (Optional)
@@ -152,8 +152,8 @@ If you want to use a custom domain:
 1. **Purchase a domain** from a domain registrar
 
 2. **Add DNS records**:
-   - Add a CNAME record pointing to `yourusername.github.io`
-   - Example: `www.yourdomain.com` → `yourusername.github.io`
+   - Add a CNAME record pointing to `aleeric.github.io`
+   - Example: `www.yourdomain.com` → `aleeric.github.io`
 
 3. **Configure GitHub Pages**:
    - Go to your repository settings

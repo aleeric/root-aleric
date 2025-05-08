@@ -1,124 +1,107 @@
-# Kali Linux Terminal Portfolio
+# root@aleric
 
-A modern, Kali Linux-inspired portfolio website with a unique UI that mimics a Kali Linux terminal interface. Built with React, TypeScript, and styled-components.
+A modern, interactive cybersecurity portfolio website built with React and TypeScript, featuring a Kali Linux-inspired terminal interface and responsive design.
+
+![](imgs/home.png)
 
 ## 🌟 Features
 
-- **Kali Linux Terminal UI**: Authentic Kali Linux terminal aesthetic with glitch animations and terminal-like interactions
-- **Responsive Design**: Fully responsive layout that works on desktop, tablet, and mobile devices
-- **Interactive Elements**: Hover effects, animations, and interactive components throughout
-- **Dark Theme**: Sleek dark theme with Kali Linux signature colors (blue, green, red)
-- **Animated Header**: Glitch effect animations on the header component
-- **Performance Optimized**: Fast loading times and smooth animations
+- **Interactive Terminal Interface**: Experience a fully functional terminal emulator with command history and custom commands
+- **Responsive Design**: Seamless experience across desktop and mobile devices
+- **Dynamic Content**: Articles, career information, and real-time logging dashboard
+- **Modern UI/UX**: Kali Linux-inspired theme with smooth animations and transitions
+- **Performance Optimized**: Lazy loading and optimized assets for fast loading times
 
-## 🚀 Live Demo
-
-[View Live Demo](https://yourusername.github.io/kali-terminal-portfolio)
-
-## 🛠️ Technologies Used
+## 🚀 Tech Stack
 
 - React 18
 - TypeScript
-- styled-components
+- Styled Components
+- React Router
 - Vite
-- CSS Animations
-- Local Storage for data persistence
+- Custom Hooks and Context API
 
-## 📋 Prerequisites
-
-Before you begin, ensure you have the following installed:
-- Node.js (v14 or higher)
-- npm or yarn
-- Git
-
-## 🔧 Installation
+## 📦 Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/kali-terminal-portfolio.git
-   cd kali-terminal-portfolio
-   ```
+```bash
+git clone https://github.com/yourusername/website_aleric.git
+cd website_aleric
+```
 
 2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+```bash
+npm install
+```
 
 3. Start the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+```bash
+npm run dev
+```
 
-4. Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
-
-## 📦 Building for Production
-
-To create a production build:
-
+4. Build for production:
 ```bash
 npm run build
-# or
-yarn build
 ```
 
-The build artifacts will be stored in the `dist/` directory.
-
-## 🔐 Secret Access
-
-### Desktop
-To access the hidden logs section on desktop, enter the Konami code:
-```
-↑ ↑ ↓ ↓ ← → ← → B A
-```
-
-### Mobile
-On mobile devices, tap the "?" button in the bottom-right corner 5 times within 2 seconds.
-
-## 📁 Project Structure
+## 🎯 Project Structure
 
 ```
-kali-terminal-portfolio/
-├── public/              # Static files
-├── src/                 # Source files
-│   ├── components/      # React components
-│   │   ├── AnimatedHeader.tsx
-│   │   └── ...         # Other components
-│   ├── styles/          # Global styles
-│   ├── App.tsx          # Main App component
-│   └── main.tsx         # Entry point
-├── package.json         # Dependencies and scripts
-└── vite.config.ts       # Vite configuration
+src/
+├── components/         # React components
+├── context/           # React context providers
+├── styles/            # Global styles and themes
+├── utils/             # Utility functions
+└── App.tsx           # Main application component
 ```
 
-## 🧩 Customization
+## 🔧 Configuration
 
-### Changing Colors
-The theme colors are defined as CSS variables in the global styles:
-- `--kali-terminal-bg`: Terminal background color
-- `--kali-blue`: Primary accent color
-- `--kali-green`: Secondary accent color
-- `--kali-red`: Tertiary accent color
-- `--kali-text`: Text color
+The project uses environment variables for configuration. Create a `.env` file in the root directory:
 
-### Modifying Header
-The animated header component (`AnimatedHeader.tsx`) can be customized by:
-- Adjusting the glitch animation parameters
-- Modifying the gradient background
-- Changing the text content and styling
+```env
+VITE_API_URL=your_api_url
+```
+
+## 📱 Responsive Design
+
+- Desktop: Full terminal interface with side menu
+- Mobile: Optimized touch interface with simplified navigation
+- Tablet: Adaptive layout with touch-friendly controls
+
+## 🎨 Customization
+
+The theme can be customized by modifying the CSS variables in `src/styles/kali-theme.css`:
+
+```css
+:root {
+  --kali-blue: #00ff9d;
+  --kali-bg: #0a0a0a;
+  --kali-text: #ffffff;
+  /* Add more custom variables */
+}
+```
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👤 Author
+## 🤝 Contributing
 
-Aleric - Cloud Security Engineer
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📞 Contact
+
+For any questions or suggestions, please open an issue in the GitHub repository.
 
 ## 🙏 Acknowledgments
 
 - Inspired by Kali Linux terminal interface
-- Fonts from [Google Fonts](https://fonts.google.com/) 
+- Built with modern web technologies
+- Special thanks to the open-source community 

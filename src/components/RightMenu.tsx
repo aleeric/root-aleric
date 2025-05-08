@@ -91,8 +91,9 @@ const MenuItem = styled.div<{ isActive: boolean; isSubmenu?: boolean; hidden?: b
 const MenuItemContent = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  width: 100%;
+  justify-content: flex-start;
+  width: auto;
+  position: relative;
   
   @media (max-width: 768px) {
     height: 100%;
@@ -111,6 +112,8 @@ const MenuIcon = styled.span`
   color: var(--kali-blue);
   transition: all 0.3s ease;
   text-shadow: 0 0 8px rgba(0, 169, 255, 0.2);
+  position: relative;
+  z-index: 1;
   
   @media (max-width: 768px) {
     margin: 0;
